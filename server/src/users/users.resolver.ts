@@ -13,15 +13,13 @@ export class UsersResolver {
 	}
 
 	@Query('users')
-	async findAll() {
-		const data = await this.usersService.findAll();
-		console.log(data);
-		return data;
+	findAll() {
+		return this.usersService.findAll();
 	}
 
 	@Query('user')
 	findOne(@Args('id') id: number) {
-		return this.usersService.findOne(id);
+		return this.usersService.findOne({ id });
 	}
 
 	@Mutation('updateUser')
