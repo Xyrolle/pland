@@ -1,4 +1,3 @@
-
 /*
  * -------------------------------------------------------
  * THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
@@ -34,6 +33,12 @@ export class CreateUserInput {
 
 export class UpdateUserInput {
     id: number;
+    name: string;
+    surname: string;
+    username: string;
+    email?: Nullable<string>;
+    password?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
 }
 
 export class Project {
