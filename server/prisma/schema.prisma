@@ -5,7 +5,7 @@ generator client {
 generator nestgraphql {
   provider               = "node node_modules/prisma-nestjs-graphql"
   output                 = "../src/@generated/prisma-nestjs-grapql"
-  fields_Validator_from  = "class_validator"
+  fields_Validator_from  = "class-validator"
   fields_Validator_input = true
 }
 
@@ -24,4 +24,14 @@ model User {
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
+  tasks     Task[]
+}
+
+model Task {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+
+  createdById Int
+  createdBy   User @relation(fields: [createdById], references: [id])
 }

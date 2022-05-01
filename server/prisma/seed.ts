@@ -1,9 +1,9 @@
 import { PrismaClient } from '@prisma/client';
-const prismaClient = new PrismaClient();
+const prisma = new PrismaClient();
 
 const main = async () => {
-	await prismaClient.user.deleteMany();
-	const user = await prismaClient.user.create({
+	await prisma.user.deleteMany();
+	const user = await prisma.user.create({
 		data: {
 			email: 'xyrolle@gmail.com',
 			username: 'xyrolle',
@@ -15,7 +15,7 @@ const main = async () => {
 
 	console.log({ user });
 
-	prismaClient.$disconnect();
+	prisma.$disconnect();
 };
 
 main();

@@ -1,3 +1,4 @@
+
 /*
  * -------------------------------------------------------
  * THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
@@ -15,11 +16,16 @@ export class UpdateProjectInput {
 }
 
 export class CreateTaskInput {
-    exampleField?: Nullable<number>;
+    title: string;
+    description?: Nullable<string>;
+    createdById: number;
 }
 
 export class UpdateTaskInput {
     id: number;
+    title?: Nullable<string>;
+    description?: Nullable<string>;
+    createdById?: Nullable<number>;
 }
 
 export class CreateUserInput {
@@ -50,7 +56,7 @@ export abstract class IQuery {
 
     abstract project(id: number): Nullable<Project> | Promise<Nullable<Project>>;
 
-    abstract tasks(): Nullable<Task>[] | Promise<Nullable<Task>[]>;
+    abstract tasks(userId?: Nullable<number>): Nullable<Task>[] | Promise<Nullable<Task>[]>;
 
     abstract task(id: number): Nullable<Task> | Promise<Nullable<Task>>;
 
@@ -80,7 +86,11 @@ export abstract class IMutation {
 }
 
 export class Task {
-    exampleField?: Nullable<number>;
+    id: number;
+    title: string;
+    description?: Nullable<string>;
+    createdBy?: Nullable<User>;
+    createdById: number;
 }
 
 export class User {

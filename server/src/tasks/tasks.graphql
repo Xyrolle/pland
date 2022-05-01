@@ -1,19 +1,27 @@
+
 type Task {
-  # Example field (placeholder)
-  exampleField: Int
+  id: Int!
+  title: String!
+  description: String
+  createdBy: User
+  createdById: Int!
 }
 
 input CreateTaskInput {
-  # Example field (placeholder)
-  exampleField: Int
+  title: String!
+  description: String
+  createdById: Int!
 }
 
 input UpdateTaskInput {
   id: Int!
+  title: String
+  description: String
+  createdById: Int
 }
 
 type Query {
-  tasks: [Task]!
+  tasks(userId: Int): [Task]!
   task(id: Int!): Task
 }
 

@@ -5,21 +5,22 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 
 @InputType()
 export class UserUpdateManyMutationInput {
-	@Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-	name?: StringFieldUpdateOperationsInput;
 
-	@Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-	surname?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
 
-	@Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-	username?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    surname?: StringFieldUpdateOperationsInput;
 
-	@Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-	email?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    username?: StringFieldUpdateOperationsInput;
 
-	@Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-	password?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    email?: StringFieldUpdateOperationsInput;
 
-	@Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-	createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    password?: StringFieldUpdateOperationsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 }

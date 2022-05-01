@@ -5,20 +5,20 @@ import { UpdateUserInput } from './dto/update-user.input';
 
 @Injectable()
 export class UsersService {
-	constructor(private prismaClient: PrismaService) {}
+	constructor(private prisma: PrismaService) {}
 
 	create(createUserInput: Prisma.UserCreateInput) {
-		return this.prismaClient.user.create({
+		return this.prisma.user.create({
 			data: createUserInput,
 		});
 	}
 
 	findAll() {
-		return this.prismaClient.user.findMany();
+		return this.prisma.user.findMany();
 	}
 
 	findOne(userWhereUniqueInput: Prisma.UserWhereUniqueInput) {
-		return this.prismaClient.user.findUnique({
+		return this.prisma.user.findUnique({
 			where: { id: userWhereUniqueInput.id },
 		});
 	}

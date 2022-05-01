@@ -1,20 +1,20 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Prisma } from '@prisma/client';
+
 import { TasksService } from './tasks.service';
-import { CreateTaskInput } from './dto/create-task.input';
-import { UpdateTaskInput } from './dto/update-task.input';
 
 @Resolver('Task')
 export class TasksResolver {
 	constructor(private readonly tasksService: TasksService) {}
 
 	@Mutation('createTask')
-	create(@Args('createTaskInput') createTaskInput: CreateTaskInput) {
+	create(@Args('createTaskInput') createTaskInput: Prisma.TaskCreateInput) {
 		return this.tasksService.create(createTaskInput);
 	}
 
 	@Query('tasks')
-	findAll() {
-		return this.tasksService.findAll();
+	findAll(@Args('userId') userId?: number) {
+		return this.tasksService.findAll(userId);
 	}
 
 	@Query('task')
@@ -23,7 +23,10 @@ export class TasksResolver {
 	}
 
 	@Mutation('updateTask')
-	update(@Args('updateTaskInput') updateTaskInput: UpdateTaskInput) {
+	update(
+		@Args('updateTaskInput')
+		updateTaskInput: Prisma.TaskMinAggregateOutputType,
+	) {
 		return this.tasksService.update(updateTaskInput.id, updateTaskInput);
 	}
 
