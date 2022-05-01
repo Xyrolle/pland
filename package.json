@@ -1,0 +1,17 @@
+{
+  "name": "pland",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "npm install --server",
+    "install-client": "npm install --client",
+    "install": "npm run install-server && npm run install-client",
+    "server": "npm run start:dev --prefix server",
+    "client": "npm start --prefix client",
+    "start": "npm run server & npm run client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
