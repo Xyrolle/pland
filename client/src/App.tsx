@@ -1,7 +1,7 @@
-const App = () => {
-	const a = '12';
+import ProjectList from './ProjectList';
 
-	return <div>App hello {a}</div>;
+const App = () => {
+	return <ProjectList />;
 };
 
 export default App;
