@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import * as Validator from 'class-validator';
 import { TaskUncheckedCreateNestedManyWithoutCreatedByInput } from '../task/task-unchecked-create-nested-many-without-created-by.input';
+import { UserProjectsUncheckedCreateNestedManyWithoutUserInput } from '../user-projects/user-projects-unchecked-create-nested-many-without-user.input';
 
 @InputType()
 export class UserUncheckedCreateInput {
@@ -32,4 +33,7 @@ export class UserUncheckedCreateInput {
 
     @Field(() => TaskUncheckedCreateNestedManyWithoutCreatedByInput, {nullable:true})
     tasks?: TaskUncheckedCreateNestedManyWithoutCreatedByInput;
+
+    @Field(() => UserProjectsUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    projects?: UserProjectsUncheckedCreateNestedManyWithoutUserInput;
 }

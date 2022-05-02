@@ -10,4 +10,7 @@ export class TaskAvgAggregate {
 
     @Field(() => Float, {nullable:true})
     createdById?: number;
+
+    @Field(() => Float, {nullable:true})
+    projectId?: number;
 }

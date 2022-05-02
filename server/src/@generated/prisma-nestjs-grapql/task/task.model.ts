@@ -3,6 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { User } from '../user/user.model';
+import { Project } from '../project/project.model';
 
 @ObjectType()
 export class Task {
@@ -21,4 +22,10 @@ export class Task {
 
     @Field(() => User, {nullable:false})
     createdBy?: User;
+
+    @Field(() => Int, {nullable:false})
+    projectId!: number;
+
+    @Field(() => Project, {nullable:false})
+    project?: Project;
 }

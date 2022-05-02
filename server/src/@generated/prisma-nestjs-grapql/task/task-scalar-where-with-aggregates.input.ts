@@ -27,4 +27,7 @@ export class TaskScalarWhereWithAggregatesInput {
 
     @Field(() => IntWithAggregatesFilter, {nullable:true})
     createdById?: IntWithAggregatesFilter;
+
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    projectId?: IntWithAggregatesFilter;
 }

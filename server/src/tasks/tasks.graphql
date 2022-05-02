@@ -5,12 +5,15 @@ type Task {
   description: String
   createdBy: User
   createdById: Int!
+  projectId: Int!
+  project: Project
 }
 
 input CreateTaskInput {
   title: String!
   description: String
   createdById: Int!
+  projectId: Int!
 }
 
 input UpdateTaskInput {

@@ -9,4 +9,7 @@ export class TaskAvgAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     createdById?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    projectId?: true;
 }

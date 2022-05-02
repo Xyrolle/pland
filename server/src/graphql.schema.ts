@@ -8,7 +8,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export class CreateProjectInput {
-    exampleField?: Nullable<number>;
+    name: string;
+    description?: Nullable<string>;
 }
 
 export class UpdateProjectInput {
@@ -19,6 +20,7 @@ export class CreateTaskInput {
     title: string;
     description?: Nullable<string>;
     createdById: number;
+    projectId: number;
 }
 
 export class UpdateTaskInput {
@@ -48,7 +50,11 @@ export class UpdateUserInput {
 }
 
 export class Project {
-    exampleField?: Nullable<number>;
+    id: number;
+    name: string;
+    description?: Nullable<string>;
+    tasks?: Nullable<Nullable<Task>[]>;
+    members?: Nullable<Nullable<UserProjects>[]>;
 }
 
 export abstract class IQuery {
@@ -63,12 +69,16 @@ export abstract class IQuery {
     abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
 
     abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
+
+    abstract userProjects(userId: number): Nullable<Nullable<UserProjectsResponse>[]> | Promise<Nullable<Nullable<UserProjectsResponse>[]>>;
 }
 
 export abstract class IMutation {
     abstract createProject(createProjectInput: CreateProjectInput): Project | Promise<Project>;
 
     abstract updateProject(updateProjectInput: UpdateProjectInput): Project | Promise<Project>;
+
+    abstract assignUser(projectId: number, userId: number): Nullable<number> | Promise<Nullable<number>>;
 
     abstract removeProject(id: number): Nullable<Project> | Promise<Nullable<Project>>;
 
@@ -91,6 +101,13 @@ export class Task {
     description?: Nullable<string>;
     createdBy?: Nullable<User>;
     createdById: number;
+    projectId: number;
+    project?: Nullable<Project>;
+}
+
+export class UserProjects {
+    userId: number;
+    projectId: number;
 }
 
 export class User {
@@ -101,6 +118,13 @@ export class User {
     email: string;
     password: string;
     createdAt: DateTime;
+    projects?: Nullable<Nullable<UserProjects>[]>;
+}
+
+export class UserProjectsResponse {
+    userId: number;
+    projectId: number;
+    project?: Nullable<Project>;
 }
 
 export type DateTime = any;

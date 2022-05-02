@@ -17,5 +17,8 @@ export class TaskCountAggregateInput {
     createdById?: true;
 
     @Field(() => Boolean, {nullable:true})
+    projectId?: true;
+
+    @Field(() => Boolean, {nullable:true})
     _all?: true;
 }

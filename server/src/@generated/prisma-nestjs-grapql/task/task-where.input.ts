@@ -4,6 +4,7 @@ import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { UserRelationFilter } from '../user/user-relation-filter.input';
+import { ProjectRelationFilter } from '../project/project-relation-filter.input';
 
 @InputType()
 export class TaskWhereInput {
@@ -31,4 +32,10 @@ export class TaskWhereInput {
 
     @Field(() => UserRelationFilter, {nullable:true})
     createdBy?: UserRelationFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    projectId?: IntFilter;
+
+    @Field(() => ProjectRelationFilter, {nullable:true})
+    project?: ProjectRelationFilter;
 }

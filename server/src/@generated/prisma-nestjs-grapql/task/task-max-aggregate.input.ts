@@ -15,4 +15,7 @@ export class TaskMaxAggregateInput {
 
     @Field(() => Boolean, {nullable:true})
     createdById?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    projectId?: true;
 }

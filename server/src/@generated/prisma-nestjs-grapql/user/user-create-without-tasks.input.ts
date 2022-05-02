@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import * as Validator from 'class-validator';
+import { UserProjectsCreateNestedManyWithoutUserInput } from '../user-projects/user-projects-create-nested-many-without-user.input';
 
 @InputType()
 export class UserCreateWithoutTasksInput {
@@ -24,4 +25,7 @@ export class UserCreateWithoutTasksInput {
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
+
+    @Field(() => UserProjectsCreateNestedManyWithoutUserInput, {nullable:true})
+    projects?: UserProjectsCreateNestedManyWithoutUserInput;
 }

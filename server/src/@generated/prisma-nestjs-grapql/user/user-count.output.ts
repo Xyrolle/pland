@@ -7,4 +7,7 @@ export class UserCount {
 
     @Field(() => Int, {nullable:false})
     tasks?: number;
+
+    @Field(() => Int, {nullable:false})
+    projects?: number;
 }

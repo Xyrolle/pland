@@ -10,4 +10,7 @@ export class TaskSumOrderByAggregateInput {
 
     @Field(() => SortOrder, {nullable:true})
     createdById?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    projectId?: keyof typeof SortOrder;
 }

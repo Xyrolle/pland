@@ -15,4 +15,7 @@ export class TaskUncheckedUpdateManyWithoutTasksInput {
 
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     description?: NullableStringFieldUpdateOperationsInput;
+
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    projectId?: IntFieldUpdateOperationsInput;
 }

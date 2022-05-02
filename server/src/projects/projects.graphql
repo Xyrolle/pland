@@ -1,11 +1,14 @@
 type Project {
-  # Example field (placeholder)
-  exampleField: Int
+  id: Int!
+  name: String!
+  description: String
+  tasks: [Task]
+  members: [UserProjects]
 }
 
 input CreateProjectInput {
-  # Example field (placeholder)
-  exampleField: Int
+  name: String!
+  description: String
 }
 
 input UpdateProjectInput {
@@ -20,5 +23,6 @@ type Query {
 type Mutation {
   createProject(createProjectInput: CreateProjectInput!): Project!
   updateProject(updateProjectInput: UpdateProjectInput!): Project!
+  assignUser(projectId:Int!, userId: Int!): Int
   removeProject(id: Int!): Project
 }

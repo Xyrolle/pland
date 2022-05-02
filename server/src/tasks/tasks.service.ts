@@ -9,7 +9,6 @@ export class TasksService {
 	create(createTaskInput: Prisma.TaskCreateInput) {
 		return this.prisma.task.create({
 			data: createTaskInput,
-			include: { createdBy: true },
 		});
 	}
 

@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { TaskUpdateManyWithoutCreatedByInput } from '../task/task-update-many-without-created-by.input';
+import { UserProjectsUpdateManyWithoutUserInput } from '../user-projects/user-projects-update-many-without-user.input';
 
 @InputType()
 export class UserUpdateInput {
@@ -27,4 +28,7 @@ export class UserUpdateInput {
 
     @Field(() => TaskUpdateManyWithoutCreatedByInput, {nullable:true})
     tasks?: TaskUpdateManyWithoutCreatedByInput;
+
+    @Field(() => UserProjectsUpdateManyWithoutUserInput, {nullable:true})
+    projects?: UserProjectsUpdateManyWithoutUserInput;
 }

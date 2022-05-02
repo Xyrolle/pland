@@ -4,6 +4,7 @@ import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operat
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { TaskUncheckedUpdateManyWithoutCreatedByInput } from '../task/task-unchecked-update-many-without-created-by.input';
+import { UserProjectsUncheckedUpdateManyWithoutUserInput } from '../user-projects/user-projects-unchecked-update-many-without-user.input';
 
 @InputType()
 export class UserUncheckedUpdateInput {
@@ -31,4 +32,7 @@ export class UserUncheckedUpdateInput {
 
     @Field(() => TaskUncheckedUpdateManyWithoutCreatedByInput, {nullable:true})
     tasks?: TaskUncheckedUpdateManyWithoutCreatedByInput;
+
+    @Field(() => UserProjectsUncheckedUpdateManyWithoutUserInput, {nullable:true})
+    projects?: UserProjectsUncheckedUpdateManyWithoutUserInput;
 }

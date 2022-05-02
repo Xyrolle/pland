@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { TaskOrderByRelationAggregateInput } from '../task/task-order-by-relation-aggregate.input';
+import { UserProjectsOrderByRelationAggregateInput } from '../user-projects/user-projects-order-by-relation-aggregate.input';
 
 @InputType()
 export class UserOrderByWithRelationInput {
@@ -29,4 +30,7 @@ export class UserOrderByWithRelationInput {
 
     @Field(() => TaskOrderByRelationAggregateInput, {nullable:true})
     tasks?: TaskOrderByRelationAggregateInput;
+
+    @Field(() => UserProjectsOrderByRelationAggregateInput, {nullable:true})
+    projects?: UserProjectsOrderByRelationAggregateInput;
 }

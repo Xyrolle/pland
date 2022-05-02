@@ -27,4 +27,7 @@ export class TaskScalarWhereInput {
 
     @Field(() => IntFilter, {nullable:true})
     createdById?: IntFilter;
+
+    @Field(() => IntFilter, {nullable:true})
+    projectId?: IntFilter;
 }

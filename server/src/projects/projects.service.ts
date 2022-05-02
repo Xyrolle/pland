@@ -1,15 +1,21 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { CreateProjectInput } from './dto/create-project.input';
+import { Prisma } from '@prisma/client';
+import { PrismaService } from 'prisma/prisma.service';
 import { UpdateProjectInput } from './dto/update-project.input';
 
 @Injectable()
 export class ProjectsService {
-	create(createProjectInput: CreateProjectInput) {
-		return 'This action adds a new project';
+	constructor(private prisma: PrismaService) {}
+
+	create(createProjectInput: Prisma.ProjectCreateInput) {
+		return this.prisma.project.create({ data: createProjectInput });
 	}
 
 	findAll() {
-		return `This action returns all projects`;
+		return this.prisma.project.findMany({
+			include: { tasks: true, members: true },
+		});
 	}
 
 	findOne(id: number) {
@@ -22,5 +28,24 @@ export class ProjectsService {
 
 	remove(id: number) {
 		return `This action removes a #${id} project`;
+	}
+
+	async assignUser(projectId: number, userId: number) {
+		await this.prisma.userProjects.create({
+			data: {
+				project: {
+					connect: {
+						id: projectId
+					},
+				},
+				user: {
+					connect: {
+						id: userId
+					},
+				},
+			},
+		});
+
+		return projectId;
 	}
 }

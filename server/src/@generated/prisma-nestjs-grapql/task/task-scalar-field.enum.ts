@@ -4,7 +4,8 @@ export enum TaskScalarFieldEnum {
     id = "id",
     title = "title",
     description = "description",
-    createdById = "createdById"
+    createdById = "createdById",
+    projectId = "projectId"
 }
 
 

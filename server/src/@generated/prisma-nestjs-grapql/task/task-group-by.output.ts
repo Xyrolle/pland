@@ -22,6 +22,9 @@ export class TaskGroupBy {
     @Field(() => Int, {nullable:false})
     createdById!: number;
 
+    @Field(() => Int, {nullable:false})
+    projectId!: number;
+
     @Field(() => TaskCountAggregate, {nullable:true})
     _count?: TaskCountAggregate;
 

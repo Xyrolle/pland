@@ -1,14 +1,17 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ProjectsService } from './projects.service';
-import { CreateProjectInput } from './dto/create-project.input';
 import { UpdateProjectInput } from './dto/update-project.input';
+import { Prisma } from '@prisma/client';
 
 @Resolver('Project')
 export class ProjectsResolver {
 	constructor(private readonly projectsService: ProjectsService) {}
 
 	@Mutation('createProject')
-	create(@Args('createProjectInput') createProjectInput: CreateProjectInput) {
+	create(
+		@Args('createProjectInput')
+		createProjectInput: Prisma.ProjectCreateInput,
+	) {
 		return this.projectsService.create(createProjectInput);
 	}
 
@@ -28,6 +31,14 @@ export class ProjectsResolver {
 			updateProjectInput.id,
 			updateProjectInput,
 		);
+	}
+
+	@Mutation('assignUser')
+	assignUser(
+		@Args('projectId') projectId: number,
+		@Args('userId') userId: number,
+	) {
+		return this.projectsService.assignUser(projectId, userId);
 	}
 
 	@Mutation('removeProject')

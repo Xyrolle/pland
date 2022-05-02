@@ -16,4 +16,7 @@ export class TaskCreateManyInput {
 
     @Field(() => Int, {nullable:false})
     createdById!: number;
+
+    @Field(() => Int, {nullable:false})
+    projectId!: number;
 }

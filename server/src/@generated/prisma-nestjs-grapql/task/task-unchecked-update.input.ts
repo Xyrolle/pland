@@ -18,4 +18,7 @@ export class TaskUncheckedUpdateInput {
 
     @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
     createdById?: IntFieldUpdateOperationsInput;
+
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    projectId?: IntFieldUpdateOperationsInput;
 }

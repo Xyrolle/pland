@@ -13,4 +13,7 @@ export class TaskUncheckedCreateWithoutCreatedByInput {
 
     @Field(() => String, {nullable:true})
     description?: string;
+
+    @Field(() => Int, {nullable:false})
+    projectId!: number;
 }

@@ -23,6 +23,22 @@ export class UsersService {
 		});
 	}
 
+	userProjects(userId: number) {
+		return this.prisma.userProjects.findMany({
+			where: {
+				userId,
+			},
+			include: {
+				project: {
+					include: {
+						tasks: true,
+						members: true,
+					},
+				},
+			},
+		});
+	}
+
 	update(id: number, updateUserInput: UpdateUserInput) {
 		return `This action updates a #${id} user`;
 	}

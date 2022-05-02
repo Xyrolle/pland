@@ -10,4 +10,7 @@ export class TaskSumAggregate {
 
     @Field(() => Int, {nullable:true})
     createdById?: number;
+
+    @Field(() => Int, {nullable:true})
+    projectId?: number;
 }
