@@ -1,9 +1,8 @@
 import ReactDOM from 'react-dom';
-import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import { ApolloProvider } from '@apollo/client';
 
-import browserHistory from './browserHistory';
 import { createApolloClient } from './createApolloClient';
 
 import UserContextProvider from './Context';
@@ -14,11 +13,11 @@ const client = createApolloClient();
 
 ReactDOM.render(
 	<ApolloProvider client={client}>
-		<HistoryRouter history={browserHistory}>
+		<BrowserRouter>
 			<UserContextProvider>
 				<App />
 			</UserContextProvider>
-		</HistoryRouter>
+		</BrowserRouter>
 	</ApolloProvider>,
 	document.getElementById('root'),
 );

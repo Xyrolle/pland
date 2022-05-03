@@ -4,13 +4,13 @@ import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core
 
 import { RoutePath, ColorSchemeValue } from './constants';
 
-import ProtectedRoute from './ProtectedRoute';
-
 import './styles.less';
 
 const ProjectListAsync = lazy(() => import('./ProjectList'));
 const LoginAsync = lazy(() => import('./Login'));
-const NavbarAsync = lazy(() => import('./Navbar'));
+const AsyncProfile = lazy(() => import('./Profile'));
+const LayoutAsync = lazy(() => import('./Layout'));
+const NotFoundPageAsync = lazy(() => import('./NotFoundPage'));
 
 const App = () => {
 	const themePreference = (localStorage.getItem('theme') as ColorSchemeValue);
@@ -27,13 +27,14 @@ const App = () => {
 					withNormalizeCSS>
 					<Suspense fallback={<p>Loading</p>}>
 						<Routes>
-							<Route path={RoutePath.projects} element={
-								<ProtectedRoute>
-									<ProjectListAsync />
-								</ProtectedRoute>
-							} />
+							<Route path="/" element={
+								<LayoutAsync />
+							}>
+								<Route path={RoutePath.projects} element={<ProjectListAsync />} />
+								<Route path={RoutePath.profile} element={<AsyncProfile />} />
+							</Route>
 							<Route path={RoutePath.login} element={<LoginAsync />} />
-							<Route path="*" element={<p>There's nothing here: 404!</p>} />
+							<Route path="*" element={<NotFoundPageAsync />} />
 						</Routes>
 					</Suspense>
 				</MantineProvider>

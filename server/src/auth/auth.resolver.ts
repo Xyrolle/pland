@@ -9,7 +9,7 @@ import { GqlAuthGuard } from './gql-auth.guard';
 
 @Resolver()
 export class AuthResolver {
-	constructor(private authService: AuthService) {}
+	constructor(private authService: AuthService) { }
 
 	@Mutation(() => LoginResponse)
 	@UseGuards(GqlAuthGuard)
@@ -17,7 +17,9 @@ export class AuthResolver {
 		@Args('loginUserInput') loginUserInput: LoginUserInput,
 		@Context() context,
 	) {
-		return this.authService.login(context.user);
+		const res = this.authService.login(context.user);
+		console.log(res, 'is the res');
+		return res;
 	}
 
 	@Mutation(() => User)

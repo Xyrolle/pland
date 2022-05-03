@@ -7,8 +7,6 @@ import React, {
 	useEffect,
 } from 'react';
 
-import browserHistory from './browserHistory';
-
 import { AUTH } from './constants';
 import { User } from './types';
 
