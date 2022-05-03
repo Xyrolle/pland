@@ -7,6 +7,11 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export class LoginUserInput {
+    username: string;
+    password: string;
+}
+
 export class CreateProjectInput {
     name: string;
     description?: Nullable<string>;
@@ -49,6 +54,35 @@ export class UpdateUserInput {
     createdAt?: Nullable<DateTime>;
 }
 
+export class LoginResponse {
+    access_token?: Nullable<string>;
+    user?: Nullable<User>;
+}
+
+export abstract class IMutation {
+    abstract login(loginUserInput: LoginUserInput): Nullable<LoginResponse> | Promise<Nullable<LoginResponse>>;
+
+    abstract signup(createUserInput: CreateUserInput): User | Promise<User>;
+
+    abstract createProject(createProjectInput: CreateProjectInput): Project | Promise<Project>;
+
+    abstract updateProject(updateProjectInput: UpdateProjectInput): Project | Promise<Project>;
+
+    abstract assignUser(projectId: number, userId: number): Nullable<number> | Promise<Nullable<number>>;
+
+    abstract removeProject(id: number): Nullable<Project> | Promise<Nullable<Project>>;
+
+    abstract createTask(createTaskInput: CreateTaskInput): Task | Promise<Task>;
+
+    abstract updateTask(updateTaskInput: UpdateTaskInput): Task | Promise<Task>;
+
+    abstract removeTask(id: number): Nullable<Task> | Promise<Nullable<Task>>;
+
+    abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
+
+    abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
+}
+
 export class Project {
     id: number;
     name: string;
@@ -73,28 +107,6 @@ export abstract class IQuery {
     abstract userProjects(userId: number): Nullable<Nullable<UserProjectsResponse>[]> | Promise<Nullable<Nullable<UserProjectsResponse>[]>>;
 }
 
-export abstract class IMutation {
-    abstract createProject(createProjectInput: CreateProjectInput): Project | Promise<Project>;
-
-    abstract updateProject(updateProjectInput: UpdateProjectInput): Project | Promise<Project>;
-
-    abstract assignUser(projectId: number, userId: number): Nullable<number> | Promise<Nullable<number>>;
-
-    abstract removeProject(id: number): Nullable<Project> | Promise<Nullable<Project>>;
-
-    abstract createTask(createTaskInput: CreateTaskInput): Task | Promise<Task>;
-
-    abstract updateTask(updateTaskInput: UpdateTaskInput): Task | Promise<Task>;
-
-    abstract removeTask(id: number): Nullable<Task> | Promise<Nullable<Task>>;
-
-    abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
-
-    abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
-
-    abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
-}
-
 export class Task {
     id: number;
     title: string;
@@ -116,7 +128,7 @@ export class User {
     surname: string;
     username: string;
     email: string;
-    password: string;
+    password?: Nullable<string>;
     createdAt: DateTime;
     projects?: Nullable<Nullable<UserProjects>[]>;
 }

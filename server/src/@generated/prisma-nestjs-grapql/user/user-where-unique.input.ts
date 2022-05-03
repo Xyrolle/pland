@@ -10,6 +10,10 @@ export class UserWhereUniqueInput {
     id?: number;
 
     @Field(() => String, {nullable:true})
+    @Validator.MinLength(3)
+    username?: string;
+
+    @Field(() => String, {nullable:true})
     @Validator.IsEmail()
     email?: string;
 }

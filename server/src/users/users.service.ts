@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
-import { UpdateUserInput } from './dto/update-user.input';
 
 @Injectable()
 export class UsersService {
@@ -19,7 +18,7 @@ export class UsersService {
 
 	findOne(userWhereUniqueInput: Prisma.UserWhereUniqueInput) {
 		return this.prisma.user.findUnique({
-			where: { id: userWhereUniqueInput.id },
+			where: userWhereUniqueInput,
 		});
 	}
 
@@ -39,7 +38,7 @@ export class UsersService {
 		});
 	}
 
-	update(id: number, updateUserInput: UpdateUserInput) {
+	update(id: number, updateUserInput: Prisma.UserMinAggregateOutputType) {
 		return `This action updates a #${id} user`;
 	}
 

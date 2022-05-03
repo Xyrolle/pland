@@ -29,6 +29,20 @@ module.exports = {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
         type: 'asset/inline',
       },
+      {
+        test: /\.less$/i,
+        use: [
+          {
+            loader: "style-loader", // creates style nodes from JS strings
+          },
+          {
+            loader: "css-loader", // translates CSS into CommonJS
+          },
+          {
+            loader: "less-loader", // compiles Less to CSS
+          },
+        ],
+      },
     ],
   },
   output: {
@@ -40,5 +54,8 @@ module.exports = {
       template: path.resolve(__dirname, '..', './src/index.html'),
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
   stats: 'errors-only',
 }

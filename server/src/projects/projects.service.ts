@@ -2,7 +2,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'prisma/prisma.service';
-import { UpdateProjectInput } from './dto/update-project.input';
 
 @Injectable()
 export class ProjectsService {
@@ -22,7 +21,7 @@ export class ProjectsService {
 		return `This action returns a #${id} project`;
 	}
 
-	update(id: number, updateProjectInput: UpdateProjectInput) {
+	update(id: number, updateProjectInput: Prisma.ProjectMinAggregateOutputType) {
 		return `This action updates a #${id} project`;
 	}
 

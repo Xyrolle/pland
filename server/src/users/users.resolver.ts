@@ -1,17 +1,13 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 
-import { UpdateUserInput } from './dto/update-user.input';
-import { UserCreateInput } from '../@generated/prisma-nestjs-grapql/user/user-create.input';
+import { Prisma } from '@prisma/client';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Resolver('User')
 export class UsersResolver {
 	constructor(private readonly usersService: UsersService) {}
-
-	@Mutation('createUser')
-	create(@Args('createUserInput') createUserInput: UserCreateInput) {
-		return this.usersService.create(createUserInput);
-	}
 
 	@Query('users')
 	findAll() {
@@ -24,12 +20,16 @@ export class UsersResolver {
 	}
 
 	@Query('userProjects')
+	@UseGuards(JwtAuthGuard)
 	userProjects(@Args('userId') userId: number) {
 		return this.usersService.userProjects(userId);
 	}
 
 	@Mutation('updateUser')
-	update(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
+	update(
+		@Args('updateUserInput')
+		updateUserInput: Prisma.UserMinAggregateOutputType,
+	) {
 		return this.usersService.update(updateUserInput.id, updateUserInput);
 	}
 

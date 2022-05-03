@@ -1,16 +1,24 @@
 import ReactDOM from 'react-dom';
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
+
+import { ApolloProvider } from '@apollo/client';
+
+import browserHistory from './browserHistory';
+import { createApolloClient } from './createApolloClient';
+
+import UserContextProvider from './Context';
 
 import App from './App';
 
-const apolloClient = new ApolloClient({
-	uri: 'http://localhost:3003/graphql/',
-	cache: new InMemoryCache(),
-});
+const client = createApolloClient();
 
 ReactDOM.render(
-	<ApolloProvider client={apolloClient}>
-		<App />
+	<ApolloProvider client={client}>
+		<HistoryRouter history={browserHistory}>
+			<UserContextProvider>
+				<App />
+			</UserContextProvider>
+		</HistoryRouter>
 	</ApolloProvider>,
 	document.getElementById('root'),
 );
